@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Sistrix visibility app: country setup</title>
+	<style>
+		#status, .c {font-weight:bold;}
+		#status { color:green;margin-left: 7px;}
+		.note{font-weight:bold;font-size:125%;}
+		body, p{margin:0;padding:0 0 5px 5px;}
+		h3{margin:0;padding:0;font-weight:bold;}
+	</style>
+</head>
+
+<body>
+	<p class="note">Select country to query Sistrix database</p>
+	<p>
+		<select name="wptk" id="wptk" required>
+			<option value="">Set country</option>
+			<option value="au">Australia</option>
+			<option value="at">Austria</option>
+			<option value="be">Belgium</option>
+			<option value="br">Brasil</option>
+			<option value="ca">Canada</option>
+			<option value="cz">Czech Republic</option>
+			<option value="dk">Denmark</option>
+			<option value="fi">Finland</option>
+			<option value="fr">France</option>
+			<option value="de" selected>Germany</option>
+			<option value="gr">Greece</option>
+			<option value="hu">Hungary</option>
+			<option value="in">India</option>
+			<option value="ie">Ireland</option>
+			<option value="it">Italy</option>
+			<option value="jp">Japan</option>
+			<option value="mx">Mexico</option>
+			<option value="nl">Netherlands</option>
+			<option value="no">Norway</option>
+			<option value="pl">Poland</option>
+			<option value="pt">Portugal</option>
+			<option value="ru">Russia</option>
+			<option value="sk">Slovakia</option>
+			<option value="za">South Africa</option>
+			<option value="es">Spain</option>
+			<option value="se">Sweden</option>
+			<option value="ch">Switzerland</option>
+			<option value="tr">Turkey</option>
+			<option value="uk">UK</option>
+			<option value="us">USA</option>
+		</select>
+	</p>
+	<div id="status"></div>
+	<script src="options.js"></script>
+</body>
+
+</html>

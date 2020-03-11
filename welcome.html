@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head><title>Sistrix checker successfully installed!</title>
+
+<style> 
+h1 {
+	color: green;
+}
+#iframe {
+	border: 0px;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	height: 76px;
+}
+#sistrixLogin {
+	width: 480px;
+	height: 400px;
+}
+.note {
+	font-weight: bold;
+}
+#status,
+.c {
+	font-weight: bold;
+}
+#status {
+	color: green;
+	font-size: 150%;
+}
+.c {
+	color: blue;
+}
+.b {
+	width: 800px;
+}
+.right {
+	float: right;
+	width: 49%;
+	margin-left: 1%;
+}
+.left {
+	float: left;
+	width: 49%;
+}
+td {
+	width: 50%;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+	height: auto;
+}
+h3 {
+	margin: 0;
+	padding: 0;
+}
+.options {
+	padding: 10px 10px 0 0;
+	margin-right: 10px;
+}
+.login {
+	padding: 13px 0 0 10px;
+}
+.steps {
+	font-size: 150%;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+th {
+	text-align: left;
+	font-size: 300%;
+	color: #1d2554;
+	padding-right: 34px;
+	margin: 0;
+}
+table,
+th,
+tr,
+td {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.bottomcells {
+	background-color: #AECCE9;
+}
+li,
+p,
+h3 {
+	font-size: 125%;
+	margin: 0;
+	padding: 0;
+}
+.bo {
+	border: 1px dotted #1d2554;
+}
+.modal-window {
+	position: fixed;
+	background-color: rgba(200, 200, 200, 0.75);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.modal-window:target {
+	opacity: 1;
+	pointer-events: auto;
+}
+.modal-window>div {
+	width: 480px;
+	height: auto;
+	position: relative;
+	margin: 10% auto;
+	padding: 2rem;
+	background: #fff;
+	color: #444;
+}
+.modal-window header {
+	font-weight: bold;
+}
+.modal-close {
+	color: #1d2554;
+	line-height: 50px;
+	font-size: 80%;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: -8px;
+	width: 70px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+.modal-close:hover {
+	color: #AECCE9;
+}
+a.poplink:link,
+a.poplink:visited {
+	text-decoration: none;
+	font-weight: bold;
+}
+.notif {
+	font-size: 125%;
+	color: #1d2554;
+	padding: 8px 0 0 1px;
+}
+.step2 {
+	padding-top: 5px;
+}
+.xx {
+	margin: 0 0 10px 10px;
+}
+</style>
+
+</head>
+
+<body class="b">
+	<h1>Sistrix Visibility App was successfully installed!</h1>
+	<h3>Features</h3>
+	<ul>
+		<li>Sistrix Visibility Index for the domain of the currently loaded url is gotten live and displayed in the badge below the extension icon on the top right in the browser's extension bar.</li>
+		<li>Sistrix metric pages for domain, path (up to three directory paths, if available) and url with a single click - left click on the extension icon opens link list with metric pages.</li>
+		<li>All Sistrix metric pages are available with any of 30 countries Sistrix offers. The country can be set by user, on this page below in the dropdown and anytime later on the extension's options page).</li>
+	</ul>
+	<h3>Please note!</h3>
+	<p>This extension works only if:</p>
+	<ul>
+		<li><strong>You have a Sistrix account</strong>
+		</li>
+		<li>You are successfully logged in into Sistrix account</li>
+		<li>You haven't forgotten to set the country for querying Sistrix in the dropdown below</li>
+	</ul>
+	<p class="steps">Setup steps you must accomplish to get this extension work:</p>
+	<table class="bo">
+		<tr class="bottomcells">
+			<th class="step1">Step 1: Country setup</th>
+			<th class="step2">Step 2: Sistrix login</th>
+		</tr>
+		<tr class="bottomcells">
+			<td class="options">
+				<iframe scrolling="no" id="iframe" src="options.html"></iframe>
+				<p class="notif xx">Your country setting will act like a subdomain in Sistrix urls like https://XX.sistrix.com/example.com</p>
+			</td>
+			<td class="login">
+				<p><a class="poplink" href="#open-modal">Open Sistrix login page</a>
+				</p>
+				<p class="notif">Don't forget always to login into Sistrix before use this extension.</p>
+				<div id="open-modal" class="modal-window">
+					<div> <a href="#modal-close" title="Close" class="modal-close">X close X</a>
+						<div>
+							<iframe scrolling="auto" id="sistrixLogin" src="https://app.sistrix.com/sistrix/profile_select"></iframe>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

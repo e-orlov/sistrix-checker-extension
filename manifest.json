@@ -1,0 +1,49 @@
+{
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "name": "Sistrix Visibility and Metrics Check",
+    "short_name": "Sistrix Checker",
+    "description": "Check active tab's domain for Sistrix visibility. Single-click access to country-based Sistrix metrics. For Sistrix clients only.",
+    "author": "Evgeniy Orlov of mediaworx berlin AG",
+    "homepage_url": "https://www.linkedin.com/in/evgeniyorlov/",
+    "version": "1.0",
+    "background": {
+        "scripts": ["background.js", "psl.js"],
+        "persistent": false
+    },
+    "options_page": "options.html",
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true,
+        "open_in_tab": false
+    },
+    "permissions": [
+        "webNavigation",
+        "activeTab",
+        "tabs",
+        "http://*/*",
+        "https://*/*",
+        "storage",
+        "background"
+    ],
+    "browser_action": {
+        "default_title": "Sistrix visibility and metrics checker",
+        "default_icon": {
+            "19": "icon19.png",
+            "38": "icon38.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icon16.png",
+        "19": "icon19.png",
+        "24": "icon24.png",
+        "32": "icon32.png",
+        "38": "icon38.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "web_accessible_resources": [
+        "welcome.html"
+    ],
+    "manifest_version": 2
+}
