@@ -4,88 +4,97 @@ var currentFullpath = "";
 var currentUrl = "";
 var currentFolder = "";
 var badgeText = "";
+var currentProtocol = "";
+const processingTabId = {};
 
-chrome.runtime.onInstalled.addListener(function(object) {
+chrome.runtime.onInstalled.addListener(function (object) {
     if (chrome.runtime.OnInstalledReason.INSTALL === object.reason) {
         chrome.tabs.create({
             url: chrome.extension.getURL("welcome.html")
-        }, function(tab) {
-            console.log("New tab launched with instructions to use the extension");
-        })
+        }, function (tab) {})
     }
 })
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.url) run(tab);
+chrome.tabs.onActivated.addListener(function (activeInfo) {
+    chrome.tabs.get(activeInfo.tabId, function (tab) {
+        console.log("onActivated: " + tab.url);
+        run(tab.pendingUrl || tab.url);
+    });
 });
 
-chrome.tabs.onActivated.addListener(info => {
-    chrome.tabs.get(info.tabId, run);
+chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
+    if (tab.active && change.url) {
+        console.log("onUpdated: " + change.url);
+        run(change.url);
+    }
 });
 
-const processingTabId = {};
+function run(param) {
 
-function run(tab) {
-    if (processingTabId[tab.id]) return;
-    processingTabId[tab.id] = true;
-
-    let newUrl = new URL(tab.pendingUrl || tab.url)
+    let newUrl = new URL(param);
     currentHost = newUrl.host;
-    currentUrl = tab.url;
+    currentUrl = newUrl.toString();
+    currentProtocol = newUrl.protocol;
+
     currentFullpath = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
     currentFolder = currentUrl.split("/");
     parsed = psl.parse(currentHost);
     currentDomain = parsed.domain;
 
-    chrome.storage.sync.get('savedApi', ({
-        savedApi
-    }) => {
+    if (currentDomain && currentProtocol.indexOf("http") === 0) {
 
-        var xhr = new XMLHttpRequest();
-        var protocol = "https://";
-        var middle = ".sistrix.com/seo/__loadModule/domain/"
-        var end = "/mobile/1/_action/_data_visindex_normal/";
+        chrome.storage.sync.get('savedApi', ({
+                savedApi
+            }) => {
 
-        xhr.open("GET", protocol + savedApi + middle + currentDomain + end, true);
+            if (savedApi == undefined) {
+                savedApi = "de";
+            }
 
-        xhr.responseType = 'document';
+            var xhr = new XMLHttpRequest();
+            var protocol = "https://";
+            var middle = ".sistrix.com/seo/__loadModule/domain/"
+                var end = "/mobile/1/_action/_data_visindex_normal/";
 
-        xhr.onreadystatechange = function() {
+            xhr.open("GET", protocol + savedApi + middle + currentDomain + end, true);
 
-            if (this.readyState == 4 && xhr.status !== 500) {
+            xhr.responseType = 'document';
 
-                function getElementByXpath(path) {
-                    return xhr.response.evaluate(path, xhr.response, null, XPathResult.STRING_TYPE, null).stringValue;
-                }
+            xhr.onreadystatechange = function () {
+                console.log(xhr);
+                if (this.readyState == 4 && xhr.status !== 500) {
 
-                badgeText = getElementByXpath("normalize-space(//div[@class='data']/span[@class='value']/text())");
-                chrome.browserAction.setBadgeText({
-                    text: String(badgeText)
-                });
-                chrome.browserAction.setBadgeBackgroundColor({
-                    color: '#1d2554'
-                });
+                    function getElementByXpath(path) {
+                        return xhr.response.evaluate(path, xhr.response, null, XPathResult.STRING_TYPE, null).stringValue;
+                    }
 
-                if (badgeText == "") {
-                    chrome.browserAction.setTitle({
-                        title: "Sistrix login required!"
+                    badgeText = getElementByXpath("normalize-space(//div[@class='data']/span[@class='value']/text())");
+                    chrome.browserAction.setBadgeText({
+                        text: String(badgeText)
                     });
 
-                } else {
-                    chrome.browserAction.setTitle({
-                        title: "Mobile visibility of " + currentDomain + " is " + String(badgeText)
+                    chrome.browserAction.setBadgeBackgroundColor({
+                        color: '#1d2554'
                     });
 
-                }
+                    if (badgeText == "") {
+                        chrome.browserAction.setTitle({
+                            title: "Sistrix login required!"
+                        });
 
-                delete processingTabId[tab.id];
+                    } else {
+                        chrome.browserAction.setTitle({
+                            title: "Mobile visibility of " + currentDomain + " is " + String(badgeText)
+                        });
+
+                    }
+
+                }
 
             }
-        }
 
-        if (currentDomain !== null) {
             xhr.send();
-        }
 
-    })
+        })
+    }
 }
