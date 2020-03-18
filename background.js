@@ -5,7 +5,6 @@ var currentUrl = "";
 var currentFolder = "";
 var badgeText = "";
 var currentProtocol = "";
-const processingTabId = {};
 
 chrome.runtime.onInstalled.addListener(function (object) {
     if (chrome.runtime.OnInstalledReason.INSTALL === object.reason) {
@@ -17,14 +16,22 @@ chrome.runtime.onInstalled.addListener(function (object) {
 
 chrome.tabs.onActivated.addListener(function (activeInfo) {
     chrome.tabs.get(activeInfo.tabId, function (tab) {
-        console.log("onActivated: " + tab.url);
+
         run(tab.pendingUrl || tab.url);
+
+        if (currentProtocol.indexOf("chrome") === 0) {
+
+            chrome.browserAction.setBadgeText({
+                text: "ZERO"
+            });
+        }
+
     });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
     if (tab.active && change.url) {
-        console.log("onUpdated: " + change.url);
+
         run(change.url);
     }
 });

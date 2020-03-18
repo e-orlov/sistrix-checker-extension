@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var bg = chrome.extension.getBackgroundPage();
+    var currentProtocol = bg.currentProtocol;
     var currentDomain = bg.currentDomain;
     var currentFullpath = bg.currentFullpath;
     var currentUrl = bg.currentUrl;
@@ -8,14 +9,24 @@ document.addEventListener('DOMContentLoaded', function() {
     var badgeText = bg.badgeText;
 
     chrome.storage.sync.get('savedApi', ({
-        savedApi
-    }) => {
+            savedApi
+        }) => {
 
         var domen = chrome.extension.getViews({
             type: "popup"
         });
-        domen[0].document.getElementById("domen").innerHTML =
-            "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Domain</a>";
+
+        if (currentProtocol.indexOf("chrome") === 0) {
+
+            domen[0].document.getElementById("domen").innerHTML =
+                "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Zero Data</a>";
+
+        } else {
+
+            domen[0].document.getElementById("domen").innerHTML =
+                "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Domain</a>";
+
+        }
 
         var host = chrome.extension.getViews({
             type: "popup"
@@ -60,6 +71,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (badgeText == "") {
             si[0].document.getElementById("si").innerHTML =
                 "<br /><a class=\"silink\" href=\"loginframe.html\">Sistrix login required!<br /><br />Please login!</a>";
+
+        } else {
+            si[0].document.getElementById("si").innerHTML =
+                "<a class=silink href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank><br />" + currentDomain + "<br /><br />" + badgeText + "</a>";
+        }
+
+        if (currentProtocol.indexOf("chrome") === 0) {
+
+            si[0].document.getElementById("si").innerHTML =
+                "<br /><a class=\"silink\">Zero Data</a>";
 
         } else {
             si[0].document.getElementById("si").innerHTML =
