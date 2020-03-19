@@ -5,6 +5,7 @@ var currentUrl = "";
 var currentFolder = "";
 var badgeText = "";
 var currentProtocol = "";
+var resp = "";
 
 chrome.runtime.onInstalled.addListener(function (object) {
     if (chrome.runtime.OnInstalledReason.INSTALL === object.reason) {
@@ -68,7 +69,9 @@ function run(param) {
             xhr.responseType = 'document';
 
             xhr.onreadystatechange = function () {
-                console.log(xhr);
+
+                resp = xhr.responseURL;
+
                 if (this.readyState == 4 && xhr.status !== 500) {
 
                     function getElementByXpath(path) {
@@ -84,7 +87,7 @@ function run(param) {
                         color: '#1d2554'
                     });
 
-                    if (badgeText == "") {
+                    if (xhr.responseURL.indexOf("https://app.sistrix.com/sistrix/login") === 0) {
                         chrome.browserAction.setTitle({
                             title: "Sistrix login required!"
                         });

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var currentFolder = bg.currentFolder;
     var currentHost = bg.currentHost;
     var badgeText = bg.badgeText;
+    var resp = bg.resp;
 
     chrome.storage.sync.get('savedApi', ({
             savedApi
@@ -15,18 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var domen = chrome.extension.getViews({
             type: "popup"
         });
-
-        if (currentProtocol.indexOf("chrome") === 0) {
-
-            domen[0].document.getElementById("domen").innerHTML =
-                "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Zero Data</a>";
-
-        } else {
-
-            domen[0].document.getElementById("domen").innerHTML =
-                "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Domain</a>";
-
-        }
+        domen[0].document.getElementById("domen").innerHTML =
+            "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Domain</a>";
 
         var host = chrome.extension.getViews({
             type: "popup"
@@ -68,20 +59,13 @@ document.addEventListener('DOMContentLoaded', function () {
             type: "popup"
         });
 
-        if (badgeText == "") {
+        if (resp.indexOf("https://app.sistrix.com/sistrix/login") === 0) {
+
             si[0].document.getElementById("si").innerHTML =
                 "<br /><a class=\"silink\" href=\"loginframe.html\">Sistrix login required!<br /><br />Please login!</a>";
-
-        } else {
-            si[0].document.getElementById("si").innerHTML =
-                "<a class=silink href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank><br />" + currentDomain + "<br /><br />" + badgeText + "</a>";
-        }
-
-        if (currentProtocol.indexOf("chrome") === 0) {
-
+        } else if (currentProtocol.indexOf("chrome") === 0) {
             si[0].document.getElementById("si").innerHTML =
                 "<br /><a class=\"silink\">Zero Data</a>";
-
         } else {
             si[0].document.getElementById("si").innerHTML =
                 "<a class=silink href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank><br />" + currentDomain + "<br /><br />" + badgeText + "</a>";
