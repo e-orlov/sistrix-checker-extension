@@ -87,7 +87,7 @@ function run(param) {
                         color: '#1d2554'
                     });
 
-                    if (xhr.responseURL.indexOf("https://app.sistrix.com/sistrix/login") === 0) {
+                    if (resp.indexOf("https://app.sistrix.com/sistrix/login") === 0) {
                         chrome.browserAction.setTitle({
                             title: "Sistrix login required!"
                         });
