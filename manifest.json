@@ -1,11 +1,11 @@
 {
     "update_url": "https://clients2.google.com/service/update2/crx",
     "name": "Sistrix Visibility and Metrics Checker",
-    "short_name": "𝕊𝕀𝕊𝕋ℝ𝕀𝕏 ℂℍ𝔼ℂ𝕂𝔼ℝ",
+    "short_name": "𝐒𝐈𝐒𝐓𝐑𝐈𝐗 𝐂𝐇𝐄𝐂𝐊𝐄𝐑",
     "description": "On-the-fly check of Sistrix mobile visibility. Single-click access to country-based Sistrix metrics. Works only for Sistrix clients.",
     "author": "Evgeniy Orlov of mediaworx berlin AG",
     "homepage_url": "https://www.linkedin.com/in/evgeniyorlov/",
-    "version": "1.1",
+    "version": "1.02",
     "background": {
         "scripts": ["background.js", "psl.js"],
         "persistent": false
@@ -23,7 +23,7 @@
         "background"
     ],
     "browser_action": {
-        "default_title": "𝕊𝕀𝕊𝕋ℝ𝕀𝕏 𝕍𝕀𝕊𝕀𝔹𝕀𝕃𝕀𝕋𝕐 𝔸ℕ𝔻 𝕄𝔼𝕋ℝ𝕀ℂ𝕊 ℂℍ𝔼ℂ𝕂𝔼ℝ",
+        "default_title": "𝐒𝐈𝐒𝐓𝐑𝐈𝐗 𝐕𝐈𝐒𝐈𝐁𝐈𝐋𝐈𝐓𝐘 𝐀𝐍𝐃 𝐌𝐄𝐓𝐑𝐈𝐂𝐒 𝐂𝐇𝐄𝐂𝐊𝐄𝐑",
         "default_icon": {
             "19": "icon19.png",
             "38": "icon38.png"
