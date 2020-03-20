@@ -20,7 +20,7 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
         run(tab.pendingUrl || tab.url);
 
-        if (currentProtocol.indexOf("chrome") === 0) {
+        if (!(currentProtocol) || currentProtocol.indexOf("chrome") === 0) {
 
             chrome.browserAction.setBadgeText({
                 text: "ZERO"

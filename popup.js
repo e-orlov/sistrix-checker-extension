@@ -17,37 +17,37 @@ document.addEventListener('DOMContentLoaded', function () {
             type: "popup"
         });
         domen[0].document.getElementById("domen").innerHTML =
-            "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>Domain</a>";
+            "<a class=link href=https://" + savedApi + ".sistrix.com/" + currentDomain + " target=_blank>DOMAIN</a>";
 
         var host = chrome.extension.getViews({
             type: "popup"
         });
         host[0].document.getElementById("host").innerHTML =
-            "<a class=link href=https://" + savedApi + ".sistrix.com/host/" + currentHost + " target=_blank>Host</a>";
+            "<a class=link href=https://" + savedApi + ".sistrix.com/host/" + currentHost + " target=_blank>HOST</a>";
 
         var firstPath = chrome.extension.getViews({
             type: "popup"
         });
         firstPath[0].document.getElementById("firstPath").innerHTML =
-            "<a class=l href=https://" + savedApi + ".sistrix.com/path/%22" + currentFolder[0] + "//" + currentHost + "/" + currentFolder[3] + "/%22 target=_blank>First path</a>";
+            "<a class=l href=https://" + savedApi + ".sistrix.com/path/%22" + currentFolder[0] + "//" + currentHost + "/" + currentFolder[3] + "/%22 target=_blank>first path</a>";
 
         var secondPath = chrome.extension.getViews({
             type: "popup"
         });
         secondPath[0].document.getElementById("secondPath").innerHTML =
-            "<a class=l href=https://" + savedApi + ".sistrix.com/path/%22" + currentFolder[0] + "//" + currentHost + "/" + currentFolder[3] + "/" + currentFolder[4] + "/%22 target=_blank>Second path</a>";
+            "<a class=l href=https://" + savedApi + ".sistrix.com/path/%22" + currentFolder[0] + "//" + currentHost + "/" + currentFolder[3] + "/" + currentFolder[4] + "/%22 target=_blank>second path</a>";
 
         var thirdPath = chrome.extension.getViews({
             type: "popup"
         });
         thirdPath[0].document.getElementById("thirdPath").innerHTML =
-            "<a class=l href=https://" + savedApi + ".sistrix.com/path/%22" + currentFolder[0] + "//" + currentHost + "/" + currentFolder[3] + "/" + currentFolder[4] + "/" + currentFolder[5] + "/%22 target=_blank>Third path</a>";
+            "<a class=l href=https://" + savedApi + ".sistrix.com/path/%22" + currentFolder[0] + "//" + currentHost + "/" + currentFolder[3] + "/" + currentFolder[4] + "/" + currentFolder[5] + "/%22 target=_blank>third path</a>";
 
         var fullpath = chrome.extension.getViews({
             type: "popup"
         });
         fullpath[0].document.getElementById("fullpath").innerHTML =
-            "<a class=link href=https://" + savedApi + ".sistrix.com/path/%22" + currentFullpath + "/%22 target=_blank>Full path</a>";
+            "<a class=link href=https://" + savedApi + ".sistrix.com/path/%22" + currentFullpath + "/%22 target=_blank>FULL PATH</a>";
 
         var url = chrome.extension.getViews({
             type: "popup"
